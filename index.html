@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWA Calculator - STI College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="branding">
+                    <h1 class="title">GWA CALCULATOR</h1>
+                    <p class="tagline">For STI College Students Only</p>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="calculator-card input-section">
+                <h2 class="section-title">Enter Your Grades</h2>
+                <p class="guidelines">* Input your grades and click Calculate to see your GWA.</p>
+
+                <p class="input-error-message" id="inputError"></p>
+                
+                <div class="input-group">
+                    <label for="prelim" class="floating-label">Prelim</label>
+                    <input 
+                        type="number" 
+                        id="prelim" 
+                        class="grade-input" 
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        placeholder="Enter Grade"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="midterm" class="floating-label">Midterm</label>
+                    <input 
+                        type="number" 
+                        id="midterm" 
+                        class="grade-input" 
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        placeholder="Enter Grade"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="preFinals" class="floating-label">Pre-Finals</label>
+                    <input 
+                        type="number" 
+                        id="preFinals" 
+                        class="grade-input" 
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        placeholder="Enter Grade"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="finals" class="floating-label">Finals</label>
+                    <input 
+                        type="number" 
+                        id="finals" 
+                        class="grade-input" 
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        placeholder="Enter Grade"
+                    >
+                </div>
+
+                <div class="button-group">
+                    <button id="calculateBtn" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i>
+                        Calculate
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <i class="fas fa-eraser"></i>
+                        Clear All
+                    </button>
+                </div>
+            </section>
+
+            <section class="calculator-card results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2 class="section-title">Your Results</h2>
+                    <p class="results-subtitle">Summary based on the grades you entered.</p>
+                </div>
+                
+                <div class="result-display">
+                    <div class="result-item highlight">
+                        <span class="result-label">Final Average</span>
+                        <div class="result-value-container">
+                            <span class="result-value" id="averageDisplay">0.00</span>
+                            <span class="result-unit">%</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">GWA</span>
+                        <span class="result-value small" id="gwaDisplay">5.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Remarks</span>
+                        <span class="result-chip" id="remarkChip">No Grade</span>
+                    </div>
+                </div>
+
+                <button id="saveBtn" class="btn btn-primary">
+                    <i class="fas fa-save"></i>
+                    Save This Result
+                </button>
+            </section>
+
+            <section class="calculator-card grades-table-section">
+                <h2 class="section-title">Grades Table</h2>
+                <p class="table-subtitle">S.Y. 2025 - 2026</p>
+                <div class="table-wrapper">
+                    <table class="grades-table">
+                        <thead>
+                            <tr>
+                                <th>GRADE RANGE</th>
+                                <th>GWA</th>
+                                <th>REMARKS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>97.50 - 100.00</td>
+                                <td>1.00</td>
+                                <td><span class="badge excellent">Excellent</span></td>
+                            </tr>
+                            <tr>
+                                <td>94.50 - 97.49</td>
+                                <td>1.25</td>
+                                <td><span class="badge very-good">Very Good</span></td>
+                            </tr>
+                            <tr>
+                                <td>91.50 - 94.49</td>
+                                <td>1.50</td>
+                                <td><span class="badge very-good">Very Good</span></td>
+                            </tr>
+                            <tr>
+                                <td>86.50 - 91.49</td>
+                                <td>1.75</td>
+                                <td><span class="badge very-good">Very Good</span></td>
+                            </tr>
+                            <tr>
+                                <td>81.50 - 86.49</td>
+                                <td>2.00</td>
+                                <td><span class="badge satisfactory">Satisfactory</span></td>
+                            </tr>
+                            <tr>
+                                <td>76.00 - 81.49</td>
+                                <td>2.25</td>
+                                <td><span class="badge satisfactory">Satisfactory</span></td>
+                            </tr>
+                            <tr>
+                                <td>70.50 - 75.99</td>
+                                <td>2.50</td>
+                                <td><span class="badge satisfactory">Satisfactory</span></td>
+                            </tr>
+                            <tr>
+                                <td>65.00 - 70.49</td>
+                                <td>2.75</td>
+                                <td><span class="badge fair">Fair</span></td>
+                            </tr>
+                            <tr>
+                                <td>59.50 - 64.99</td>
+                                <td>3.00</td>
+                                <td><span class="badge fair">Fair</span></td>
+                            </tr>
+                            <tr>
+                                <td>0.00 - 59.49</td>
+                                <td>5.00</td>
+                                <td><span class="badge failed">Failed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="calculator-card saved-section" id="savedSection" style="display: none;">
+                <div class="saved-header">
+                    <h2 class="section-title">Saved Records</h2>
+                    <button id="computeGWABtn" class="btn btn-primary" title="Compute overall GWA">
+                        <i class="fas fa-chart-line"></i>
+                        Compute GWA
+                    </button>
+                </div>
+                <div class="records-list" id="recordsList"></div>
+            </section>
+
+            <section class="calculator-card compute-result-section" id="computeResultSection" style="display: none;">
+                <div class="results-header">
+                    <h2 class="section-title">Overall GWA Result</h2>
+                    <p class="results-subtitle">Combined calculation from all saved records.</p>
+                </div>
+                
+                <div class="result-display">
+                    <div class="result-item highlight">
+                        <span class="result-label">Total Units</span>
+                        <div class="result-value-container">
+                            <span class="result-value" id="totalUnitsDisplay">0</span>
+                        </div>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Overall GWA</span>
+                        <span class="result-value small" id="overallGWADisplay">5.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Subjects</span>
+                        <span class="result-value small" id="subjectCountDisplay">0</span>
+                    </div>
+                </div>
+
+                <div class="subject-breakdown" id="subjectBreakdown"></div>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal" id="subjectModal" style="display: none;">
+        <div class="modal-content">
+            <h3>Save Result</h3>
+            <input 
+                type="text" 
+                id="subjectInput" 
+                class="modal-input" 
+                placeholder="Enter subject name"
+                maxlength="50"
+            >
+            <div class="modal-error" id="modalError"></div>
+            <div class="modal-buttons">
+                <button id="modalCancel" class="btn btn-secondary">Cancel</button>
+                <button id="modalSave" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="deleteModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Delete Record</h3>
+            <p class="modal-message">Are you sure you want to delete this record? This action cannot be undone.</p>
+            <div class="modal-buttons">
+                <button id="deleteCancel" class="btn btn-secondary">Cancel</button>
+                <button id="deleteConfirm" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
